@@ -1,6 +1,9 @@
 package com.solarest.fastloader.context;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author jinjian
@@ -9,9 +12,12 @@ public class DynamicClassLoader extends ClassLoader {
 
     private String classPath;
 
-    public DynamicClassLoader(String classPath, ClassLoader parent) {
+    private String className;
+
+    public DynamicClassLoader(String classPath, String className, ClassLoader parent) {
         super(parent);
         this.classPath = classPath;
+        this.className = className;
     }
 
     @Override
@@ -23,9 +29,9 @@ public class DynamicClassLoader extends ClassLoader {
     }
 
     @Override
-    protected Class<?> findClass(String fullClassPath) {
-        byte[] raw = readClassBytes(fullClassPath);
-        Class<?> clazz = defineClass(fullClassPath, raw, 0, raw.length);
+    public Class<?> findClass(String classPath) {
+        byte[] raw = readClassBytes(classPath);
+        Class<?> clazz = defineClass(null, raw, 0, raw.length);
         resolveClass(clazz);
         return clazz;
     }

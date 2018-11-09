@@ -1,7 +1,5 @@
 package com.solarest.fastloader.manager;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 
 /**
@@ -14,7 +12,9 @@ public interface CommandLineManager {
      *
      * @param command 命令行
      * @param args    参数
-     * @throws IOException IO异常
+     * @return code
+     * @throws IOException          IO异常
+     * @throws InterruptedException InterruptedException
      */
     int runCommandLine(String command, String... args) throws IOException, InterruptedException;
 
@@ -24,7 +24,9 @@ public interface CommandLineManager {
      * @param command  命令行
      * @param fileName 文件名称
      * @param args     参数
-     * @throws IOException IO异常
+     * @return code
+     * @throws IOException          IO异常
+     * @throws InterruptedException InterruptedException
      */
     int runCommandLineWithFile(String command, String fileName, String... args) throws IOException, InterruptedException;
 }
