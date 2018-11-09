@@ -1,2 +1,2 @@
-# faster-loader
+# fast-loader
 class loader tools for Java
